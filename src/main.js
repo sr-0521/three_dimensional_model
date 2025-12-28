@@ -13,6 +13,19 @@ renderer.setClearColor(new THREE.Color(0xffffff));
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; // Enable damping (inertia)
 
+// Replace the lights section with this
+const ambientLight = new THREE.AmbientLight(0xffffff, 1); // Brighter ambient
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+directionalLight.position.set(10, 10, 5);
+scene.add(directionalLight);
+
+// Add a point light for glow
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(-10, 0, 0);
+scene.add(pointLight);
+
 const loader = new GLTFLoader();
 let earth;
 loader.load(
